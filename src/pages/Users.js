@@ -7,6 +7,7 @@ const Users = () => {
   const [page, setPage] = useState(1);
 
   const usersPerPage = 10;
+  const totalPages = users.length / usersPerPage;
 
   const fetchData = async () => {
     setLoading(true);
@@ -40,32 +41,48 @@ const Users = () => {
                   <img src={user.picture.large} alt={user.name.first} />
                 </div>
 
-                <d iv className="user-info">
+                <div className="user-info">
                   <h3>
                     {user.name.first} {user.name.last}
                   </h3>
                   <p>{user.email}</p>
                   <p>{user.login.username}</p>
                   <p>{user.gender}</p>
-                </d>
+                </div>
               </div>
             </div>
           );
         })}
-      <button onClick={() => setPage((p) => p - 1)} disabled={page <= 1}>
-        Previous
-      </button>
+      <div className="pagination">
+        <button
+          onClick={() => setPage(page - 1)}
+          disabled={page <= 1}
+          className="prev"
+        >
+          Previous
+        </button>
 
-      <button
-        onClick={() => setPage((p) => p + 1)}
-        disabled={page >= users.length / usersPerPage}
-      >
-        Next
-      </button>
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map((each) => (
+          <button
+            onClick={() => setPage(each)}
+            key={each}
+            className="pagination-btn"
+          >
+            {each}
+          </button>
+        ))}
 
-      <h4>
-        Page {page} of {users.length / usersPerPage}
-      </h4>
+        <button
+          onClick={() => setPage(page + 1)}
+          disabled={page >= totalPages}
+          className="next"
+        >
+          Next
+        </button>
+      </div>
+      <p className="btn-num">
+        Page {page} of {totalPages}
+      </p>
     </div>
   );
 };

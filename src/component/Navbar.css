@@ -1,16 +1,21 @@
 .navbar {
+  background-color: #a7c5b9;
+  height: 3rem;
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
   gap: 10px;
-  margin: 10px;
 }
 
 .nav-link {
   text-decoration: none;
-  font-size: 24px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  font-size: 28px;
+  font-weight: 600;
   padding: 5px 20px;
   border-radius: 5px;
-  background-color: teal;
   color: white;
 }
 
